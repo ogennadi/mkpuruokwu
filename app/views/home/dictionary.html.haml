@@ -1,0 +1,8 @@
+﻿= form_tag '/dictionary', :method => :get do
+  = text_field_tag :q
+  = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]]))
+  = submit_tag 'Search'
+  
+- if @result
+  %h2 Results
+  %p= @result
