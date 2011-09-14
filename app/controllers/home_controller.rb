@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def dictionary
-    term = IgboEntry.find_by_term(params[:q])
-    @result = term ? term.definition : "none"
+    @q        = params[:q]
+    @dict     = params[:dict]
+    klass     = params[:dict] == 'ig-en' ? IgboEntry : EnglishEntry
+    @results  = klass.where('term LIKE ?', "#{@q}%").paginate(:page => params[:page])
   end
 end

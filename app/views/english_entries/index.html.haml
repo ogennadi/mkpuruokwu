@@ -1,0 +1,25 @@
+%h1 Listing english_entries
+
+%table
+  %tr
+    %th Language
+    %th Term
+    %th Term class
+    %th Definition
+    %th
+    %th
+    %th
+
+  - @english_entries.each do |english_entry|
+    %tr
+      %td= english_entry.language
+      %td= english_entry.term
+      %td= english_entry.term_class
+      %td= english_entry.definition
+      %td= link_to 'Show', english_entry
+      %td= link_to 'Edit', edit_english_entry_path(english_entry)
+      %td= link_to 'Destroy', english_entry, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New English entry', new_english_entry_path

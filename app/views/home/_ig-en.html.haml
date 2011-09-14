@@ -1,0 +1,7 @@
+%h2 Results
+%p= "Search term: #{@q}"
+
+- @results.each do |result|
+  %p= result.definition
+
+= will_paginate @results

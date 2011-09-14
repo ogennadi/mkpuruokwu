@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Language:
+  = @english_entry.language
+%p
+  %b Term:
+  = @english_entry.term
+%p
+  %b Term class:
+  = @english_entry.term_class
+%p
+  %b Definition:
+  = @english_entry.definition
+
+= link_to 'Edit', edit_english_entry_path(@english_entry)
+\|
+= link_to 'Back', english_entries_path

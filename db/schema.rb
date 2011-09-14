@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913112342) do
+ActiveRecord::Schema.define(:version => 20110913141536) do
+
+  create_table "english_entries", :force => true do |t|
+    t.string   "language",   :default => ""
+    t.string   "term",       :default => ""
+    t.string   "term_class", :default => ""
+    t.text     "definition", :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "igbo_entries", :force => true do |t|
     t.string   "language",   :default => ""

@@ -1,8 +1,15 @@
 ﻿= form_tag '/dictionary', :method => :get do
   = text_field_tag :q
-  = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]]))
+  = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]], @dict))
   = submit_tag 'Search'
   
-- if @result
+- if @results
   %h2 Results
-  %p= @result
+  %p= "Search term: #{@q}"
+
+  - @results.each do |result|
+    %p= result.definition
+
+  = will_paginate @results
+- elsif @q && !@results
+  = render :partial => 'no_result'

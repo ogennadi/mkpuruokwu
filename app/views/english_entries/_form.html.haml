@@ -1,0 +1,22 @@
+= form_for @english_entry do |f|
+  -if @english_entry.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@english_entry.errors.count, "error")} prohibited this english_entry from being saved:"
+      %ul
+        - @english_entry.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :language
+    = f.text_field :language
+  .field
+    = f.label :term
+    = f.text_field :term
+  .field
+    = f.label :term_class
+    = f.text_field :term_class
+  .field
+    = f.label :definition
+    = f.text_area :definition
+  .actions
+    = f.submit 'Save'
