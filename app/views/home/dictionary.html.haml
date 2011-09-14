@@ -1,15 +1,56 @@
-﻿= form_tag '/dictionary', :method => :get do
-  = text_field_tag :q
-  = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]], @dict))
-  = submit_tag 'Search'
-  
-- if @results
-  %h2 Results
-  %p= "Search term: #{@q}"
+﻿.header
+  %h1 Mkpuruokwu Igbo
+  %p
+    Designed by
+    = link_to "Oge Nnadi", "http://oge.nnadi.org"
+    
+.search
+  = form_tag '/dictionary', :method => :get do
+    = text_field_tag :q
+    = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]], @dict))
+    = submit_tag 'Search'
 
-  - @results.each do |result|
-    %p= result.definition
+.instructions
+  %table
+    %thead
+      %tr
+        %td Type this...
+        %td ...instead of this
+    
+    %tbody
+      %tr
+        %td c
+        %td ch
+      %tr
+        %td ë
+        %td ẹ
+      %tr
+        %td ï
+        %td ị
+      %tr
+        %td ö
+        %td ọ
+      %tr
+        %td ü
+        %td ụ
+      
+.results
+  - if @results
+    %h2 Results
+    %p= "Search term: #{@q}"
 
-  = will_paginate @results
-- elsif @q && !@results
-  = render :partial => 'no_result'
+    - @results.each do |result|
+      .result
+        .term= result.term
+        .term_class= result.term_class
+        .definition= result.definition
+
+    = will_paginate @results
+  - elsif @q && !@results
+    = render :partial => 'no_result'
+    
+%footer
+  %p
+    This dictionary contains #{number_with_delimiter(@english_count)} English and #{number_with_delimiter(@igbo_count)} Igbo entries, and is based on Michael J.C. Echuruo's excellent
+    = link_to "Igbo-English Dictionary", "http://echeruo.syr.edu/biodata/echeruo_contents.htm#publications"
+    = "."
