@@ -41,9 +41,9 @@
 
     - @results.each do |result|
       .result
-        .term= result.term
-        .term_class= result.term_class
-        .definition= result.definition
+        .term= result.term.force_encoding("UTF-8")
+        .term_class= result.term_class.force_encoding("UTF-8")
+        .definition= result.definition.force_encoding("UTF-8")
 
     = will_paginate @results
   - elsif @q && !@results

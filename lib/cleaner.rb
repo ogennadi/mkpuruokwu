@@ -1,6 +1,15 @@
-require 'csv'
+﻿require 'csv'
 
 class Cleaner
+  LANGUAGE, TERM, TERM_CLASS, TONES, DEFINITION  = 0, 1, 2, 3, 4
+  
+  def self.csv2db(path)     
+    CSV.foreach(path) do |row|
+      IgboEntry.create(:term => row[TERM], :term_class => row[TERM_CLASS], :tones => row[TONES], :definition => row[DEFINITION])
+      puts "created #{row[TERM]}"
+    end
+  end
+  
   def self.ig2csv(path)
     file    = File.new(path, 'r')
     buffer  = nil
@@ -17,10 +26,10 @@ class Cleaner
         matches     = regex.match(buffer)
         
         if matches
-          pretones    = matches[1]
-          tones       = matches[2]
-          definition  = matches[3]
-          split_pretones = pretones.split
+          pretones        = matches[1]
+          tones           = matches[2]
+          definition      = matches[3]
+          split_pretones  = pretones.split
           
           if split_pretones.length > 1
             term_class = split_pretones.last
@@ -31,11 +40,11 @@ class Cleaner
           puts term_class
           puts tones
           puts definition
-          csv << [term, term_class, tones, definition]
+          csv << ["ig", term, term_class, tones, definition]
         else
         
           puts buffer
-          csv << buffer
+          csv << ["ig", buffer]
         end
         puts "---------------------------------------------------------"
         counter = counter + 1
