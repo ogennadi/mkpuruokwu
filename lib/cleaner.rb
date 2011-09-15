@@ -16,7 +16,7 @@ class Cleaner
     counter = 0
     regex   = /(\A[^\[\n]+)\[([^\]]+)\](.*\z)/m
     
-    CSV.open('lib/cleanup/out.csv', 'w') do |csv|
+    CSV.open('public/dict.csv', 'w') do |csv|
     while (line = file.gets)
       if buffer.nil?
         buffer = line
