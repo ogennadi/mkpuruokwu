@@ -2,3 +2,54 @@
   Place all the styles related to the matching controller here.
   They will automatically be included in application.css.
 */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #d73;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5em
+}
+
+header h2 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.content {
+  background-color: white;
+}
+.instructions {
+  float: right;
+  width: 12em;
+}
+
+.search {
+  min-width: 50em;
+  background-color: #d73;
+  height: 4em;
+}
+
+.search input , .search select{
+  font-size: 1em
+}
+
+header, footer {
+  background-color: #d73;
+}
+
+header {
+  width: 14em;
+  height: 4em;
+  float: left;
+}
+
+header p {
+  margin: 0;
+}
+
+.results {
+  min-height: 10em;
+}
