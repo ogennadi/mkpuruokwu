@@ -52,27 +52,25 @@ class Cleaner
   
   def self.write_en(buffer)
     splitted = if /\s+n\s+/.match buffer
-          term_class = 'n'
+      term_class = 'n'
       buffer.split(/\s+n\s+/)
-
     elsif /\s+v\s+/.match buffer
-                term_class = 'v'
+      term_class = 'v'
       buffer.split(/\s+v\s+/)
-
     elsif /\s+adj\s+/.match buffer
-                term_class = 'adj'
+      term_class = 'adj'
       buffer.split(/\s+adj\s+/)
-
     elsif /\s+adv\s+/.match buffer
       term_class = 'adv'
       buffer.split(/\s+adv\s+/)
-
     else
+      term_class = ""
       [buffer]
     end  
     
     term = splitted.first.sub(/^\s+/, '')
     definition =  splitted[1..-1].join
+    definition = definition ? definition : ""
     puts '------------------------------------------'
     puts term
     return ['en', term, term_class, nil, definition, 'echeruo']

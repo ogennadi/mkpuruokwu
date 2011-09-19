@@ -4,6 +4,7 @@
     path = "public/dict.csv"
     puts "Loading entries from #{path}"
     IgboEntry.delete_all
+    EnglishEntry.delete_all
     Cleaner.csv2db path
   end
 end
