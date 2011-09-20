@@ -15,7 +15,11 @@ header h1 {
 
 header h2 {
   margin: 0;
-  font-size: 1.1em;
+  font-size: 1.2em;
+}
+
+.search input {
+  margin-top: 1.5em;
 }
 
 .content {
@@ -29,20 +33,20 @@ header h2 {
 .search {
   min-width: 50em;
   background-color: #d73;
-  height: 4em;
+  height: 4.5em;
 }
 
 .search input , .search select{
   font-size: 1em
 }
 
-header, footer {
+footer, header {
   background-color: #d73;
 }
 
 header {
   width: 14em;
-  height: 4em;
+  height: 4.5em;
   float: left;
 }
 
@@ -52,4 +56,21 @@ header p {
 
 .results {
   min-height: 10em;
+  padding-left: 0.5em;
+}
+
+.term, .term_class, .tones {
+  display: inline;
+}
+
+.term {
+  font-weight: bold;
+}
+
+.term_class {
+  font-style: italic;
+}
+
+.result {
+  padding-bottom: 1em;
 }

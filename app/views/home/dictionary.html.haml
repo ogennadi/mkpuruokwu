@@ -1,9 +1,9 @@
 ﻿.content
   %header
     %h1 Mkpuruokwu Igbo
-    %h2 The Igbo Dictionary
+    %h2 The Igbo Dictionary:
     %p
-      Designed by
+      By
       = link_to "Oge Nnadi", "http://oge.nnadi.org"
       
   .search
@@ -45,6 +45,7 @@
         .result
           .term= result.term.force_encoding("UTF-8") if result.term
           .term_class= result.term_class.force_encoding("UTF-8") if result.term_class
+          .tones= "[#{result.tones.force_encoding("UTF-8")}]" if  @dict == "ig-en" && result.tones
           .definition= result.definition.force_encoding("UTF-8") if result.definition
 
       = will_paginate @results
