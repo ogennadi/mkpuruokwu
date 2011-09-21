@@ -13,6 +13,11 @@ header h1 {
   font-size: 1.5em
 }
 
+header h1 a {
+  text-decoration: none;
+  color: black;
+}
+
 header h2 {
   margin: 0;
   font-size: 1.2em;
@@ -28,6 +33,7 @@ header h2 {
 .instructions {
   float: right;
   width: 12em;
+  margin-left: solid, 1px;
 }
 
 .search {
@@ -44,6 +50,10 @@ footer, header {
   background-color: #d73;
 }
 
+footer {
+  clear: both;
+}
+
 header {
   width: 14em;
   height: 4.5em;
@@ -55,6 +65,7 @@ header p {
 }
 
 .results {
+  float:  left;
   min-height: 10em;
   padding-left: 0.5em;
 }
@@ -73,4 +84,16 @@ header p {
 
 .result {
   padding-bottom: 1em;
+}
+
+table {
+  text-align: center;
+}
+
+td {
+  padding-left: 1em;
+}
+
+thead {
+  font-weight: bold;
 }
