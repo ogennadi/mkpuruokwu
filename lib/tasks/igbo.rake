@@ -1,10 +1,17 @@
 ﻿namespace :igbo do
-  desc "Load the db from the csv"
+  desc "Load the db from raw csv"
   task :load => :environment do
-    path = "public/dict.csv"
-    puts "Loading entries from #{path}"
-    IgboEntry.delete_all
-    EnglishEntry.delete_all
-    Cleaner.csv2db path
+    Cleaner.load_dict('public/dict-en.csv', EnglishEntry)
+    Cleaner.load_dict('public/dict-ig.csv', IgboEntry)
+  end
+
+  desc "Load English entries"
+  task :loaden => :environment do
+    Cleaner.load_dict('public/dict-en.csv', EnglishEntry)
+  end
+  
+  desc "Load Igbo entries"
+  task :loadig => :environment do
+    Cleaner.load_dict('public/dict-ig.csv', IgboEntry)
   end
 end

@@ -3,6 +3,17 @@
 class Cleaner
   LANGUAGE, TERM, TERM_CLASS, TONES, DEFINITION, SOURCE  = 0, 1, 2, 3, 4, 5
   
+  def self.load
+    load_dict('public/dict-en.csv', EnglishEntry)
+    load_dict('public/dict-ig.csv', IgboEntry)
+  end
+  
+  def self.load_dict(path, klass)
+    puts "Loading entries from #{path}" 
+    klass.delete_all
+    Cleaner.csv2db path
+  end
+  
   def self.csv2db(path)     
     CSV.foreach(path) do |row|
       if row[LANGUAGE] == 'ig'
