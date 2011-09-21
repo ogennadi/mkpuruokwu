@@ -68,6 +68,7 @@ header p {
   float:  left;
   min-height: 10em;
   padding-left: 0.5em;
+  width: 35em;
 }
 
 .term, .term_class, .tones {
