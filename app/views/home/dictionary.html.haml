@@ -10,7 +10,7 @@
     = form_tag '/dictionary', :method => :get do
       = text_field_tag :q, @q, :size => 30
       = select_tag(:dict, options_for_select([["Igbo -> English", "ig-en"], ["English -> Igbo", "en-ig"]], @dict))
-      = submit_tag 'Search'
+      %button Search
 
   .instructions
     %table
@@ -37,20 +37,22 @@
           %td ụ
         
   .results
-    - if @results
-      %h2 Results
-      %p= "Search term: #{@q}"
+    - if @q
+      - if !@results.empty?
+        %h2 Results
+        %p= "Search term: #{@q}"
 
-      - @results.each do |result|
-        .result
-          .term= result.term.force_encoding("UTF-8") if result.term
-          .term_class= result.term_class.force_encoding("UTF-8") if result.term_class
-          .tones= "[#{result.tones.force_encoding("UTF-8")}]" if  @dict == "ig-en" && result.tones
-          .definition= result.definition.force_encoding("UTF-8") if result.definition
+        - @results.each do |result|
+          .result
+            .term= result.term.force_encoding("UTF-8") if result.term
+            .term_class= result.term_class.force_encoding("UTF-8") if result.term_class
+            .tones= "[#{result.tones.force_encoding("UTF-8")}]" if  @dict == "ig-en" && result.tones
+            .definition= result.definition.force_encoding("UTF-8") if result.definition
 
-      = will_paginate @results
-    - elsif @q && !@results
-      = render :partial => 'no_result'
+        = will_paginate @results
+      - else
+        %p No results found
+
       
   %footer
     %p
