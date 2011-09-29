@@ -13,7 +13,7 @@ module Igbo
   class Application < Rails::Application
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
-
+    config.middleware.use "WwwDitcher"
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
