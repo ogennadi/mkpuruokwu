@@ -41,7 +41,7 @@ class Cleaner
           if buffer.nil?
             buffer = line
           elsif /[^\[\]\s]+\[.+\]\s*/.match line
-            csv << write_en(buffer)
+            csv << strip_newlines(write_en(buffer))
             counter = counter + 1
             buffer = line
           else
@@ -51,7 +51,7 @@ class Cleaner
         
         unless buffer.nil?
           content = content.sub(entry, '')
-          csv << write_en(buffer)
+          csv << strip_newlines(write_en(buffer))
           counter = counter + 1
         end
       end
@@ -117,11 +117,11 @@ class Cleaner
             puts term_class
             puts tones
             puts definition
-            csv << ["ig", term, term_class, tones, definition, "echeruo"]
+            csv << strip_newlines(["ig", term, term_class, tones, definition, "echeruo"])
           else
           
             puts buffer
-            csv << ["ig", buffer, "echeruo"]
+            csv << strip_newlines(["ig", buffer, "echeruo"])
           end
           puts "---------------------------------------------------------"
           counter = counter + 1
@@ -132,5 +132,14 @@ class Cleaner
     
     puts counter
     file.close
+  end
+  
+  # Because Excel can't handle columns with newlines
+  def self.strip_newlines(row)
+    row.map do |col|
+      if col
+        col.gsub("\n", " ")
+      end
+    end
   end
 end
